@@ -1,0 +1,19 @@
+## Scheduling Algorithms Self-Assessment
+
+1. First-come, first-servered (/5):
+
+2. Shortest-job-first (/5):
+
+3. Priority Scheduling (/5)
+
+4. Round-Robin (/5)
+
+5. Priority with Round-Robin (/5)
+  
+Bonus: Output CPU Utilization (/2)
+
+Bonus: Output TAT, WT, RT for each sheduling algorithm (/3)
+       (Turn Around Time, Wait Time, Response Time).
+
+--------------------------------------------
+Total Score: /20 (basic reqs) + Bonus /5 = /25
