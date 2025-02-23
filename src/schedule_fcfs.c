@@ -1,18 +1,23 @@
 // First-Come First-Served (FCFS)
 // Schedules tasks in order in which they request the CPU.
-// For simplified grading/testing, tasks that
-// arrive at the same time are compared lexicographically.
+
+// For simplified grading and testing:
+// - Assume all tasks arrive at the same time.
+// - Order tasks that arrive at the same time lexicographically.
 
 #include "list.h"
 #include "schedulers.h" // Interface
 #include <stdbool.h>
 #include <stdio.h>
 
+struct node *g_head = NULL;
+
 bool comesBefore(char *a, char *b) { return strcmp(a, b) < 0; }
 
+// Helper method for schedule.
 // Based on traverse from list.c.
 // Finds the task whose name comes first in dictionary.
-Task *pickNextTask(struct node **g_head) {
+Task *pickNextTask() {
   if (!g_head) {
     return NULL; // If list is empty, nothing to do.
   }
