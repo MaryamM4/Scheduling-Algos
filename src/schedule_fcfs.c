@@ -39,9 +39,19 @@ Task *pickNextTask() {
   return best_sofar;
 }
 
-// @TODO
-void add(char *name, int priority, int burst);
+void add(char *name, int priority, int burst) {
+  Task *newTask = createTask(name, priority, burst);
+  insert(&g_head, newTask);
+}
 
-// @TODO:
-// Invokes the scheduler
-void schedule();
+void schedule() {
+  Task *temp;
+
+  while (g_head != NULL) {
+    temp = pickNextTask();
+    if (temp) {
+      run(temp, temp->burst);
+    }
+    deleteTask(temp); // Done with task.
+  }
+}
