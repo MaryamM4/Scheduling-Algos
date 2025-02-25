@@ -1,10 +1,14 @@
 # makefile for scheduling program
 #
+# make clean
+#
 # make rr - for round-robin scheduling
 # make fcfs - for FCFS scheduling
 # make sjf - for SJF scheduling
 # make priority - for priority scheduling
 # make priority_rr - for priority with round robin scheduling
+#
+# Then run with ./rr
 
 CC=gcc
 CFLAGS=-Wall
@@ -19,23 +23,23 @@ clean:
 	rm -rf priority
 	rm -rf priority_rr
 
-rr: driver.o list.o CPU.o schedule_rr.o
-	$(CC) $(CFLAGS) -o rr driver.o schedule_rr.o list.o CPU.o
+rr: driver.o list.o CPU.o schedule_rr.o task.o
+	$(CC) $(CFLAGS) -o rr driver.o schedule_rr.o list.o CPU.o task.o
 
-sjf: driver.o list.o CPU.o schedule_sjf.o
-	$(CC) $(CFLAGS) -o sjf driver.o schedule_sjf.o list.o CPU.o
+sjf: driver.o list.o CPU.o schedule_sjf.o task.o
+	$(CC) $(CFLAGS) -o sjf driver.o schedule_sjf.o list.o CPU.o task.o
 
-fcfs: driver.o list.o CPU.o schedule_fcfs.o
-	$(CC) $(CFLAGS) -o fcfs driver.o schedule_fcfs.o list.o CPU.o
+fcfs: driver.o list.o CPU.o schedule_fcfs.o task.o
+	$(CC) $(CFLAGS) -o fcfs driver.o schedule_fcfs.o list.o CPU.o task.o
 
-priority: driver.o list.o CPU.o schedule_priority.o
-	$(CC) $(CFLAGS) -o priority driver.o schedule_priority.o list.o CPU.o
+priority: driver.o list.o CPU.o schedule_priority.o task.o
+	$(CC) $(CFLAGS) -o priority driver.o schedule_priority.o list.o CPU.o task.o
 
-schedule_fcfs.o: $(SRC_DIR)/schedule_fcfs.c
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/schedule_fcfs.c
+schedule_fcfs.o: $(SRC_DIR)/schedule_fcfs.c task.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/schedule_fcfs.c task.o
 
-priority_rr: driver.o list.o CPU.o schedule_priority_rr.o
-	$(CC) $(CFLAGS) -o priority_rr driver.o schedule_priority_rr.o list.o CPU.o
+priority_rr: driver.o list.o CPU.o schedule_priority_rr.o task.o
+	$(CC) $(CFLAGS) -o priority_rr driver.o schedule_priority_rr.o list.o CPU.o task.o
 
 driver.o: $(SRC_DIR)/driver.c
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/driver.c
@@ -54,3 +58,6 @@ list.o: $(SRC_DIR)/list.c $(SRC_DIR)/list.h
 
 CPU.o: $(SRC_DIR)/CPU.c $(SRC_DIR)/cpu.h
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/CPU.c
+
+task.o: $(SRC_DIR)/task.c $(SRC_DIR)/task.h
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/task.c
