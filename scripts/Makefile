@@ -41,6 +41,9 @@ schedule_fcfs: driver.o list.o CPU.o schedule_fcfs.o task.o
 schedule_fcfs.o: $(SRC_DIR)/schedule_fcfs.c
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/schedule_fcfs.c
 
+schedule_priority_rr.o: $(SRC_DIR)/schedule_priority_rr.c
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/schedule_priority_rr.c
+
 priority_rr: driver.o list.o CPU.o schedule_priority_rr.o task.o
 	$(CC) $(CFLAGS) -o priority_rr driver.o schedule_priority_rr.o list.o CPU.o task.o
 
