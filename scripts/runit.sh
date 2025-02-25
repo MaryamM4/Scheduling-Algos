@@ -16,7 +16,7 @@ make $scheduler
 
 # Check if make succeeded before trying to run the binary
 if [ $? -eq 0 ]; then
-    ./$scheduler
+    ./$scheduler schedule.txt
 else
     echo "Failed to build scheduler for: $scheduler"
 fi
