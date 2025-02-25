@@ -15,7 +15,7 @@ struct node {
 // insert and delete operations.
 void insert(struct node **head, Task *task);
 void insertAtEnd(struct node **head, Task *task);
-void delete(struct node **head, Task *task);
+void deleteFromList(struct node **head, Task *task);
 void traverse(struct node *head);
 
 #endif // LIST_H
