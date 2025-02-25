@@ -2,17 +2,19 @@
 
 # Run with: ./runit
 
-echo "Choose scheduler type: "
+make clean # prev. build
+clear
+
+echo "Type in scheduler type and enter: "
 echo "rr, sjf, fcfs, priority, schedule_fcfs, or priority_rr "
 echo
 read scheduler
 echo
 
-make clean # prev. build
-clear
 
 # Build
 make $scheduler
+echo
 
 # Check if make succeeded before trying to run the binary
 if [ $? -eq 0 ]; then
@@ -20,3 +22,4 @@ if [ $? -eq 0 ]; then
 else
     echo "Failed to build scheduler for: $scheduler"
 fi
+echo
