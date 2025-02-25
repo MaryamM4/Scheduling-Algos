@@ -5,14 +5,18 @@
 // - Assume all tasks arrive at the same time.
 // - Order tasks that arrive at the same time lexicographically.
 
-#include "list.h"
 #include "schedulers.h" // Interface
-#include <stdbool.h>
+#include <stdbool.h>    // bools
 #include <stdio.h>
 
 struct node *g_head = NULL;
 
 bool comesBefore(char *a, char *b) { return strcmp(a, b) < 0; }
+
+void add(char *name, int priority, int burst) {
+  Task *newTask = createTask(name, priority, burst);
+  insert(&g_head, newTask);
+}
 
 // Helper method for schedule.
 // Based on traverse from list.c.
@@ -34,14 +38,8 @@ Task *pickNextTask() {
   }
 
   // Delete the node from list, Task will get deleted later.
-  delete (&g_head, best_sofar);
-
+  deleteFromList(&g_head, best_sofar);
   return best_sofar;
-}
-
-void add(char *name, int priority, int burst) {
-  Task *newTask = createTask(name, priority, burst);
-  insert(&g_head, newTask);
 }
 
 void schedule() {
@@ -51,7 +49,7 @@ void schedule() {
     temp = pickNextTask();
     if (temp) {
       run(temp, temp->burst);
+      deleteTask(temp); // Done with task.
     }
-    deleteTask(temp); // Done with task.
   }
 }
