@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# Prompts user to choose scheduler model.
 # Run with: ./runit
+
+# File stores tasks info
+tasks_file="schedule.txt"
 
 make clean # prev. build
 clear
@@ -18,7 +22,7 @@ echo
 
 # Check if make succeeded before trying to run the binary
 if [ $? -eq 0 ]; then
-    ./$scheduler schedule.txt
+    ./$scheduler "$tasks_file"
 else
     echo "Failed to build scheduler for: $scheduler"
 fi
