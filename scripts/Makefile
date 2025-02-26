@@ -50,7 +50,7 @@ priority_rr: driver.o list.o CPU.o schedule_priority_rr.o task.o
 driver.o: $(SRC_DIR)/driver.c
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/driver.c
 
-schedule_sjf.o: schedule_sjf.c
+schedule_sjf.o: $(SRC_DIR)/schedule_sjf.c
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/schedule_sjf.c
 
 schedule_priority.o: $(SRC_DIR)/schedule_priority.c
