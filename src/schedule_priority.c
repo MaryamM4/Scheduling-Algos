@@ -4,11 +4,12 @@
 #include "schedulers.h" // Interface
 
 struct node *g_head = NULL;
+struct node *info_head = NULL;
 
 int min(int a, int b) { return (a < b) ? a : b; }
 
 void add(char *name, int priority, int burst) {
-  Task *newTask = createTask(name, priority, burst);
+  Task *newTask = createTask(name, priority, burst, 0);
 
   struct node *newNode = malloc(sizeof(struct node));
   newNode->task = newTask;
@@ -49,4 +50,8 @@ void schedule() {
     deleteFromList(&g_head, temp);
     deleteTask(temp);
   }
+
+  printf("\n");
+  printCPUUtilization();
+  printf("\n");
 }

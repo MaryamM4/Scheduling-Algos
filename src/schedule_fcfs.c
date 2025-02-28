@@ -10,11 +10,10 @@
 #include <stdio.h>
 
 struct node *g_head = NULL;
-
-bool comesBefore(char *a, char *b) { return strcmp(a, b) < 0; }
+struct node *info_head = NULL;
 
 void add(char *name, int priority, int burst) {
-  Task *newTask = createTask(name, priority, burst);
+  Task *newTask = createTask(name, priority, burst, 0);
   insert(&g_head, newTask);
 }
 
@@ -49,7 +48,17 @@ void schedule() {
     temp = pickNextTask();
     if (temp) {
       run(temp, temp->burst);
-      deleteTask(temp); // Done with task.
+
+      // Done with task
+      // deleteTask(temp);
+      temp->completion_time = getCurrentTime();
+      insertLexicographically(&info_head, temp);
     }
   }
+
+  printf("\n");
+  printCPUUtilization();
+  printf("\n");
+  printInfo(info_head);
+  deleteList(&info_head);
 }

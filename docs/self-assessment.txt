@@ -1,19 +1,35 @@
 ## Scheduling Algorithms Self-Assessment
 
-1. First-come, first-servered (/5):
+1. First-come, first-servered (5/5):
+       Tasks are executed in the order they arrive, 
+       with the correct execution time printed after each task completes. 
+       The task order is determined by lexicographical order (for hw's sake).
 
-2. Shortest-job-first (/5):
+2. Shortest-job-first (5/5):
+       Prioritizes tasks by shortest CPU burst.
 
-3. Priority Scheduling (/5)
+3. Priority Scheduling (5/5)
+       Schedules tasks based on priority.
 
-4. Round-Robin (/5)
+4. Round-Robin (5/5)
+       Each task runs for quantum of 10 ms and then 
+       returns to end of queue when not done.
 
-5. Priority with Round-Robin (/5)
+5. Priority with Round-Robin (5/5)
+       Creates Round-Robin "rings" for tasks with same priority,
+       and the rings and organized by priority level.
   
-Bonus: Output CPU Utilization (/2)
+Bonus: Output CPU Utilization (2/2)
+       Calculates CPU utilization as execution time divided by
+       the time passed since CPU init. 
+       
+       Note the assignment assumes all tasks arrive at the same time,
+       and the CPU is not left in an idle state.
 
-Bonus: Output TAT, WT, RT for each sheduling algorithm (/3)
+Bonus: Output TAT, WT, RT for each sheduling algorithm (1/3)
        (Turn Around Time, Wait Time, Response Time).
+              Works only for fcfs right now.
+
 
 --------------------------------------------
-Total Score: /20 (basic reqs) + Bonus /5 = /25
+Total Score: 20/20 (basic reqs) + Bonus 3/5 = 28/25

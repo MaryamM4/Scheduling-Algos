@@ -10,6 +10,9 @@
 // Global Head for tasks list.
 extern struct node *g_head;
 
+// Global head for tasks info.
+extern struct node *info_head;
+
 // Add a task to the list
 void add(char *name, int priority, int burst);
 

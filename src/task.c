@@ -1,6 +1,6 @@
 #include "task.h"
 
-Task *createTask(char *name, int priority, int burst) {
+Task *createTask(char *name, int priority, int burst, int init_time) {
   Task *newTask = (Task *)malloc(sizeof(Task));
   if (!newTask) {
     fprintf(stderr, "createTask failed to allocate memory for Task.\n");
@@ -16,6 +16,12 @@ Task *createTask(char *name, int priority, int burst) {
 
   newTask->priority = priority;
   newTask->burst = burst;
+  newTask->time_left = burst;
+  newTask->init_time = init_time;
+
+  newTask->completion_time = -1;
+  newTask->first_response_time = -1;
+  newTask->dispatch_count = 0;
 
   return newTask;
 }

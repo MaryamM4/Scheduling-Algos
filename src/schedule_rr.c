@@ -5,11 +5,12 @@
 #include "schedulers.h" // Interface
 
 struct node *g_head = NULL;
+struct node *info_head = NULL;
 
 int min(int a, int b) { return (a < b) ? a : b; }
 
 void add(char *name, int priority, int burst) {
-  Task *newTask = createTask(name, priority, burst);
+  Task *newTask = createTask(name, priority, burst, 0);
   insert(&g_head, newTask);
 }
 
@@ -31,11 +32,11 @@ void schedule() {
   while (g_head != NULL) {
     temp = pickNextTask();
     if (temp) {
-      run(temp, min(temp->burst, QUANTUM));
+      run(temp, min(temp->time_left, QUANTUM));
 
       // If task not done, move back to end.
-      temp->burst -= 10;
-      if (temp->burst > 0) {
+      temp->time_left -= 10;
+      if (temp->time_left > 0) {
         insertAtEnd(&g_head, temp);
 
       } else {
@@ -43,4 +44,8 @@ void schedule() {
       }
     }
   }
+
+  printf("\n");
+  printCPUUtilization();
+  printf("\n");
 }
