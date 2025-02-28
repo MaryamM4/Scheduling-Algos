@@ -4,13 +4,14 @@
 # Run with: ./runit
 
 # File stores tasks info
+#tasks_file="pri-schedule.txt"
 tasks_file="schedule.txt"
 
 make clean # prev. build
 clear
 
-echo "Type in scheduler type and enter: "
-echo "rr, sjf, fcfs, priority, schedule_fcfs, or priority_rr "
+echo "Type in one of the following scheduler types and enter: "
+echo "fcfs, sjf, priority, rr, or priority_rr "
 echo
 read scheduler
 echo
