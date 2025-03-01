@@ -1,7 +1,6 @@
 #ifndef CPU_H
 #define CPU_H
 
-#include "list.h" // @TODO: MOVE printInfo TO schedule.
 #include "task.h"
 #include <stdio.h> // bool
 
@@ -17,8 +16,6 @@ void run(Task *task, int slice);
 
 // Outputs percentage of time the CPU is idle.
 void printCPUUtilization();
-
-void printInfo(struct node *info_head);
 
 int getCurrentTime();
 

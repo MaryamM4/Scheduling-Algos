@@ -22,5 +22,6 @@ void insertLexicographically(struct node **head, Task *task);
 void deleteFromList(struct node **head, Task *task);
 void traverse(struct node *head);
 void deleteList(struct node **head);
+void printInfo(struct node *info_head);
 
 #endif // LIST_H

@@ -104,8 +104,60 @@ void deleteList(struct node **head) {
     deleteTask(current->task);
     free(current);
 
-    current = next; 
+    current = next;
   }
 
   *head = NULL;
+}
+
+// Output a table of information for each task:
+// - Turn Around time (TAT): Total time from process init to completion
+// - Wait Time (WT): Total time the process has to wait in
+//                   ready queue before getting CPU time.
+// - Response Time (RT): Duration between task init and getting first
+//                       time to be executed by CPU.
+void printInfo(struct node *info_head) {
+  if (!info_head) {
+    return;
+  }
+
+  // Program doesn't need to be efficient here.
+  // So we're iterating through the list 4 times. :)b
+
+  // Print names
+  struct node *it = info_head;
+  printf("...|");
+  while (it != NULL) {
+    printf(" %3s |", it->task->name);
+    it = it->next;
+  }
+
+  it = info_head;
+  printf("\nTAT|");
+  int tat;
+  while (it != NULL) {
+    tat = it->task->completion_time - it->task->init_time;
+    printf(" %3d |", tat);
+    it = it->next;
+  }
+
+  it = info_head;
+  printf("\nWT |");
+  int wt;
+  while (it != NULL) {
+    wt = (it->task->completion_time - it->task->init_time) - it->task->burst;
+    printf(" %3d |", wt);
+    it = it->next;
+  }
+
+  it = info_head;
+  printf("\nRT |");
+  int rt;
+  while (it != NULL) {
+    rt = it->task->first_response_time - it->task->init_time;
+    printf(" %3d |", rt);
+    it = it->next;
+  }
+
+  printf("\n");
 }
